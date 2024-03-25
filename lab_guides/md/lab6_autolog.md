@@ -101,18 +101,18 @@ mlflow.autolog(
 
 
 One common use case is to enable/disable autologging for a specific
-library. For example, if you train your model on PyTorch but use
+library. For example, if you train your model on tensorflow but use
 scikit-learn for data preprocessing, you may want to disable autologging
-for scikit-learn while keeping it enabled for PyTorch. You can achieve
-this by either (1) enable autologging only for PyTorch using PyTorch
+for scikit-learn while keeping it enabled for tensorflow. You can achieve
+this by either (1) enable autologging only for tensorflow using tensorflow
 flavor (2) disable autologging for scikit-learn using its flavor with
 `disable=True`.
 
 ```
 import mlflow
 
-# Option 1: Enable autologging only for PyTorch
-mlflow.pytorch.autolog()
+# Option 1: Enable autologging only for tensorflow
+mlflow.tensorflow.autolog()
 
 # Option 2: Disable autologging for scikit-learn, but enable it for other libraries
 mlflow.sklearn.autolog(disable=True)
