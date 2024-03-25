@@ -9,13 +9,16 @@ the logging, registering, and loading of a model for inference.
 Pre-Req:
 --------
 
-1. Run the github erpository in the lab environment:
+1. Clone the github repository in the lab environment using git bash:
 
 `git clone https://github.com/fenago/mlops-ai-security.git`
 
 2. Start jupyter lab by running the following command in the terminal:
 
 `jupyter lab`
+
+**Note:** Make sure to access the jupyter environment using Google Chrome.
+
 
 Lab Solution
 -------------

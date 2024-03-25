@@ -33,9 +33,8 @@ filter runs. Below we'll...
 
 ### Create Example MLflow Runs
 
-First, let's create some example MLflow runs. This documentation is
-based on experiments created with the below script. If you don't want to
-interactively explore this on your machine, skip this section.
+First, let's create some example MLflow runs. This is
+based on experiments created with the below script.
 
 Before running the script, let's simply start the MLflow UI on a local
 host.
@@ -48,8 +47,7 @@ our web browser. After doing so, you'll notice that we don't have any
 experiments or models. Let's resolve this by creating a few MLflow runs
 via the script below.
 
-**Note** that when you run this script, you'll want to do so from the same
-directory that you ran the `mlflow ui` command.
+**Note** that when you run this script, you'll want to do so from the same directory that you ran the `mlflow ui` command.
 
 
 ```
