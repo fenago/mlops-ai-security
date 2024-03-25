@@ -59,7 +59,7 @@ connect to for logging our data for this quickstart. From a terminal,
 run:
 
 
-`mlflow server --host 127.0.0.1 --port 8080`
+`mlflow server --host 127.0.0.1 --port 8081`
 
 
 
@@ -174,7 +174,7 @@ materialized prior to logging.
 
 ```
 # Set our tracking server uri for logging
-mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
+mlflow.set_tracking_uri(uri="http://127.0.0.1:8081")
 
 # Create a new MLflow Experiment
 mlflow.set_experiment("MLflow Quickstart")
@@ -255,7 +255,7 @@ Step 6 - View the Run in the MLflow UI
 
 In order to see the results of our run, we can navigate to the MLflow
 UI. Since we have already started the Tracking Server at
-http://localhost:8080, we can simply navigate to that URL in our
+http://localhost:8081, we can simply navigate to that URL in our
 browser.
 
 When opening the site, you will see a screen similar to the following:

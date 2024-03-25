@@ -53,14 +53,14 @@ to keep the command prompt running during the lab, as closing it
 will shut down the server.
 
 
-`mlflow server --host 127.0.0.1 --port 8080`
+`mlflow server --host 127.0.0.1 --port 8081`
 
 Once the server starts running, you should see the following output:
 
 
 ```
 [2023-11-01 10:28:12 +0900] [28550] [INFO] Starting gunicorn 20.1.0
-[2023-11-01 10:28:12 +0900] [28550] [INFO] Listening at: http://127.0.0.1:8080 (28550)
+[2023-11-01 10:28:12 +0900] [28550] [INFO] Listening at: http://127.0.0.1:8081 (28550)
 [2023-11-01 10:28:12 +0900] [28550] [INFO] Using worker: sync
 [2023-11-01 10:28:12 +0900] [28552] [INFO] Booting worker with pid: 28552
 [2023-11-01 10:28:12 +0900] [28553] [INFO] Booting worker with pid: 28553
@@ -139,7 +139,7 @@ will specify to start an instance of the client.
 
 
 ```
-client = MlflowClient(tracking_uri="http://127.0.0.1:8080")
+client = MlflowClient(tracking_uri="http://127.0.0.1:8081")
 ```
 
 We now have a client interface to the tracking server that can both send
@@ -259,7 +259,7 @@ take a brief look at the MLflow UI.
 In the first section of this lab, we started the MLflow Tracking
 Server from a command prompt, specifying the host as
 `127.0.0.1` and the port as
-`8080`. Let's go to the UI and see what
+`8081`. Let's go to the UI and see what
 the Default Experiment looks like.
 
 
@@ -268,7 +268,7 @@ Viewing the MLflow UI
 
 In order to see the MLflow UI, we simply have to use a web browser to
 connect to the MLflow Tracking Server and navigate to
-[http://127.0.0.1:8080](http://127.0.0.1:8080/).
+[http://127.0.0.1:8081](http://127.0.0.1:8081/).
 Once navigating to the url for the MLflow UI, you will see the default
 experiment with no run data.
 
@@ -415,7 +415,7 @@ Seeing our new Experiment in the UI
 
 As before, we're going to connect to our running MLflow Tracking server
 to view the MLflow UI. If you've closed the browser window that was
-running it, simply navigate to `http://127.0.0.1:8080` in a new browser window.
+running it, simply navigate to `http://127.0.0.1:8081` in a new browser window.
 
 
 [![View our new experiment in the
@@ -770,7 +770,7 @@ this via the following command:
 
 
 ```
-mlflow.set_tracking_uri("http://127.0.0.1:8080")
+mlflow.set_tracking_uri("http://127.0.0.1:8081")
 ```
 
 Once this is set, we can define a few more constants that we're going to
