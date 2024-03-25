@@ -143,11 +143,7 @@ all_runs = mlflow.search_runs(search_all_experiments=True)
 print(all_runs)
 ```
 
-[Output]{.caption-text}
-[](https://mlflow.org/docs/latest/search-runs.html#id1 "Permalink to this code"){.headerlink}
-
-
-
+```
 
                                  run_id  ... tags.mlflow.user
     0  5984a3488161440f92de9847e846b342  ...     michael.berk
@@ -162,6 +158,8 @@ print(all_runs)
     9  59853d5f17f946218f63de1dc82de07b  ...     michael.berk
 
     [10 rows x 19 columns]
+```
+
 
 Second, let's try filtering the runs for our really bad models:
 `metrics.loss > 0.8`.
@@ -175,17 +173,14 @@ bad_runs = mlflow.search_runs(
 print(bad_runs)
 ```
 
-[Output]{.caption-text}
-[](https://mlflow.org/docs/latest/search-runs.html#id2 "Permalink to this code"){.headerlink}
 
-
-
-
+```
                                  run_id  ... tags.mlflow.source.name
     0  67973142b9c0470d8d764ada07c5a988  ...               delete.py
     1  59853d5f17f946218f63de1dc82de07b  ...               delete.py
 
     [2 rows x 19 columns]
+```
 
 You'll notice that we now are displaying 2 runs instead of 10. Pretty
 easy, right?
@@ -502,23 +497,24 @@ Some tips:
 
 
 ```
-    import mlflow
+import mlflow
 
-    run_ids = ["22db81f070f6413588641c8c343cdd72", "c3680e37d0fa44eb9c9fb7828f6b5481"]
-    run_id_condition = "'" + "','".join(run_ids) + "'"
+run_ids = ["UPDATE_RUNID_HERE", "UPDATE_RUNID2_HERE"]
+run_id_condition = "'" + "','".join(run_ids) + "'"
 
-    complex_filter = f"""
-    attributes.run_id IN ({run_id_condition})
-      AND metrics.loss > 0.3
-      AND metrics."f1 score" < 0.5
-      AND params.model LIKE "GPT%"
-    """
+complex_filter = f"""
+attributes.run_id IN ({run_id_condition})
+  AND metrics.loss > 0.3
+  AND metrics."f1 score" < 0.5
+  AND params.model LIKE "GPT%"
+"""
 
-    runs_with_complex_filter = mlflow.search_runs(
-        experiment_names=["search-run-guide"],
-        filter_string=complex_filter,
-    )
-    print(runs_with_complex_filter)
+runs_with_complex_filter = mlflow.search_runs(
+    experiment_names=["search-run-guide"],
+    filter_string=complex_filter,
+)
+print(runs_with_complex_filter)
+
 ```
 
 The output will be a pandas DataFrame with the runs that match the
@@ -540,14 +536,14 @@ The run_view_type parameter exposes additional filtering options, as noted in th
 
 
 ```
-    import mlflow
-    from mlflow.entities import ViewType
+import mlflow
+from mlflow.entities import ViewType
 
-    active_runs = mlflow.search_runs(
-        experiment_names=["search-run-guide"],
-        run_view_type=ViewType.ACTIVE_ONLY,
-        order_by=["metrics.accuracy DESC"],
-    )
+active_runs = mlflow.search_runs(
+    experiment_names=["search-run-guide"],
+    run_view_type=ViewType.ACTIVE_ONLY,
+    order_by=["metrics.accuracy DESC"],
+)
 ```
 
 #### 2 - Ordering
@@ -563,14 +559,15 @@ is omitted is to sort by `start_time DESC`, then `run_id ASC`.
 
 
 ```
-    import mlflow
-    from mlflow.entities import ViewType
+import mlflow
+from mlflow.entities import ViewType
 
-    active_runs_ordered_by_accuracy = mlflow.search_runs(
-        experiment_names=["search-run-guide"],
-        run_view_type=ViewType.ACTIVE_ONLY,
-        order_by=["metrics.accuracy DESC"],
-    )
+active_runs_ordered_by_accuracy = mlflow.search_runs(
+    experiment_names=["search-run-guide"],
+    run_view_type=ViewType.ACTIVE_ONLY,
+    order_by=["metrics.accuracy DESC"],
+)
+active_runs_ordered_by_accuracy
 ```
 
 A common use case is getting the top n results, for example, the top 5
@@ -578,15 +575,23 @@ runs by accuracy. When combined with the `max_results` parameter, you can get th
 
 
 ```
-    import mlflow
-    from mlflow.entities import ViewType
+import mlflow
+from mlflow.entities import ViewType
 
-    highest_accuracy_run = mlflow.search_runs(
-        experiment_names=["search-run-guide"],
-        run_view_type=ViewType.ACTIVE_ONLY,
-        max_results=1,
-        order_by=["metrics.accuracy DESC"],
-    )[0]
+highest_accuracy_run = mlflow.search_runs(
+    experiment_names=["search-run-guide"],
+    run_view_type=ViewType.ACTIVE_ONLY,
+    max_results=1,
+    order_by=["metrics.accuracy DESC"],
+)
+
+```
+
+**Print output:**
+
+
+```
+highest_accuracy_run
 ```
 
 #### 3 - Searching All Experiments
@@ -595,13 +600,19 @@ Now you might be wondering how to search all experiments. It's as simple
 as specifying `search_all_experiments=True` and omitting the `experiment_ids` parameter.
 
 ```
-    import mlflow
-    from mlflow.entities import ViewType
+import mlflow
+from mlflow.entities import ViewType
 
-    model_of_interest = "GPT-4"
-    gpt_4_runs_global = mlflow.search_runs(
-        filter_string=f"params.model = '{model_of_interest}'",
-        run_view_type=ViewType.ALL,
-        search_all_experiments=True,
-    )
+model_of_interest = "GPT-4"
+gpt_4_runs_global = mlflow.search_runs(
+    filter_string=f"params.model = '{model_of_interest}'",
+    run_view_type=ViewType.ALL,
+    search_all_experiments=True,
+)
+```
+
+**Print output:**
+
+```
+gpt_4_runs_global
 ```

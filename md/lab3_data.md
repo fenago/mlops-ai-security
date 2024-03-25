@@ -15,34 +15,34 @@ Complete solution for this lab is available in the `lab3_mlflow_data.ipynb` note
 The following example demonstrates how to use mlflow.data to log a training dataset to a run, retrieve information about the dataset from the run, and load the dataset’s source.
 
 ```
-    import mlflow.data
-    import pandas as pd
-    from mlflow.data.pandas_dataset import PandasDataset
+import mlflow.data
+import pandas as pd
+from mlflow.data.pandas_dataset import PandasDataset
 
-    # Construct a Pandas DataFrame using iris flower data from a web URL
-    dataset_source_url = "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
-    df = pd.read_csv(dataset_source_url)
-    # Construct an MLflow PandasDataset from the Pandas DataFrame, and specify the web URL
-    # as the source
-    dataset: PandasDataset = mlflow.data.from_pandas(df, source=dataset_source_url)
+# Construct a Pandas DataFrame using iris flower data from a web URL
+dataset_source_url = "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+df = pd.read_csv(dataset_source_url)
+# Construct an MLflow PandasDataset from the Pandas DataFrame, and specify the web URL
+# as the source
+dataset: PandasDataset = mlflow.data.from_pandas(df, source=dataset_source_url)
 
-    with mlflow.start_run():
-        # Log the dataset to the MLflow Run. Specify the "training" context to indicate that the
-        # dataset is used for model training
-        mlflow.log_input(dataset, context="training")
+with mlflow.start_run():
+    # Log the dataset to the MLflow Run. Specify the "training" context to indicate that the
+    # dataset is used for model training
+    mlflow.log_input(dataset, context="training")
 
-    # Retrieve the run, including dataset information
-    run = mlflow.get_run(mlflow.last_active_run().info.run_id)
-    dataset_info = run.inputs.dataset_inputs[0].dataset
-    print(f"Dataset name: {dataset_info.name}")
-    print(f"Dataset digest: {dataset_info.digest}")
-    print(f"Dataset profile: {dataset_info.profile}")
-    print(f"Dataset schema: {dataset_info.schema}")
+# Retrieve the run, including dataset information
+run = mlflow.get_run(mlflow.last_active_run().info.run_id)
+dataset_info = run.inputs.dataset_inputs[0].dataset
+print(f"Dataset name: {dataset_info.name}")
+print(f"Dataset digest: {dataset_info.digest}")
+print(f"Dataset profile: {dataset_info.profile}")
+print(f"Dataset schema: {dataset_info.schema}")
 
-    # Load the dataset's source, which downloads the content from the source URL to the local
-    # filesystem
-    dataset_source = mlflow.data.get_source(dataset_info)
-    dataset_source.load()
+# Load the dataset's source, which downloads the content from the source URL to the local
+# filesystem
+dataset_source = mlflow.data.get_source(dataset_info)
+dataset_source.load()
 ```
 
 
@@ -91,6 +91,5 @@ x = {
 }
 y = np.random.randint(2, size=[2])
 dataset = mlflow.data.from_numpy(x, targets=y)
-
 ```
 

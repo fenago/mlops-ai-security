@@ -233,8 +233,13 @@ predictions = loaded_model.predict(X_test)
 
 iris_feature_names = datasets.load_iris().feature_names
 
+# Convert X_test validation feature data to a Pandas DataFrame
 result = pd.DataFrame(X_test, columns=iris_feature_names)
+
+# Add the actual classes to the DataFrame
 result["actual_class"] = y_test
+
+# Add the model predictions to the DataFrame
 result["predicted_class"] = predictions
 
 result[:4]
