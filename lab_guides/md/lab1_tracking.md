@@ -9,18 +9,23 @@ the logging, registering, and loading of a model for inference.
 Pre-Req:
 --------
 
-1. Run the github erpository in the lab environment:
+1. Run the github erpository in the lab environment - IMPORTANT - make sure that you open git bash to run this.:
 
 `git clone https://github.com/fenago/mlops-ai-security.git`
 
-2. Start jupyter lab by running the following command in the terminal:
+2. Start jupyter lab by running the following command in the terminal.  IMPORTANT - make sure that you open git bash to run this.:
 
-`jupyter lab`
+`nohup jupyter lab &`
+
+then call:
+`grep http://localhost nohup.out`
+
+and copy the URL with the token attached and paste it in to CHROME (not anything else)
 
 Lab Solution
 -------------
 
-Complete solution for this lab is available in the `lab1_tracking_quickstart.ipynb` notebook.
+Complete solution for this lab is available in the `lab1_tracking_quickstart.ipynb` notebook.  Do NOT open this file.  Use only for the solution.  Start with a clean notebook.
 
 What you will learn
 -------------------
@@ -42,7 +47,7 @@ In this lab, you will learn:
 Step 1 - Get MLflow
 ----------------------------------------------
 MLflow is available on PyPI. If you don't already have it installed on
-your system, you can install it with:
+your system, you can install it with (run this in your jupyter lab notebook):
 
 
 `pip install mlflow`
@@ -56,16 +61,16 @@ Step 2 - Start a Tracking Server
 
 We're going to start a local MLflow Tracking Server, which we will
 connect to for logging our data for this quickstart. From a terminal,
-run:
+run - IMPORTANT: run this from the command line in git bash:
 
 
-`mlflow server --host 127.0.0.1 --port 8081`
+`nohup mlflow server --host 127.0.0.1 --port 8081 &`
 
 
 
 ### Set the Tracking Server URI (if not using a Databricks Managed MLflow Tracking Server)
 
-Since we are using local tracking server, ensure that you set the tracking server's uri using:
+Since we are using local tracking server, ensure that you set the tracking server's uri using in your notebook:
 
 
 - Python
