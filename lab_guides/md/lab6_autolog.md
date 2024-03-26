@@ -74,11 +74,11 @@ Execute your code in the jupyter or python notebook.
 Once your training job finishes, you can run following command to launch
 the MLflow UI:
 
-`mlflow ui --port 8080`
+`mlflow ui --port 8081`
 
 **Note:** Run above command from same path as your notebook.
 
-Then, navigate to [http://localhost:8080](http://localhost:8080/) in
+Then, navigate to [http://localhost:8081](http://localhost:8081/) in
 your browser to view the results.
 
 
