@@ -152,7 +152,7 @@ We log our model with MLflow to manage its lifecycle efficiently and keep track 
    
 Logging a model in MLflow is a crucial step in the model lifecycle management, enabling efficient tracking, versioning, and management. The process involves registering the model along with its essential metadata within the MLflow tracking system.
 
-Utilizing the [mlflow.transformers.log_model](https://www.mlflow.org/docs/latest/python_api/mlflow.transformers.html#mlflow.transformers.log_model) function, specifically tailored for models and components from the `transformers` library, simplifies this task. This function is adept at handling various aspects of the models from this library, including their complex pipelines and configurations.
+Utilizing the `mlflow.transformers.log_model` function, specifically tailored for models and components from the `transformers` library, simplifies this task. This function is adept at handling various aspects of the models from this library, including their complex pipelines and configurations.
 
 When logging the model, crucial metadata such as the model's signature, which was previously established, is included. This metadata plays a significant role in the subsequent stages of the model's lifecycle, from tracking its evolution to facilitating its deployment in different environments. The signature, in particular, ensures the model's compatibility and consistent performance across various platforms, thereby enhancing its utility and reliability in practical applications.
 
@@ -161,9 +161,9 @@ By logging our model in this way, we ensure that it is not only well-documented 
 
 #### A Tip for Saving Storage Cost
 
-When you call [mlflow.transformers.log_model](https://www.mlflow.org/docs/latest/python_api/mlflow.transformers.html#mlflow.transformers.log_model), MLflow will saves a full copy of the Transformers model weight. However, this could take large storage space (3GB for `flan-alpaca-large` model), but might be redundant when you don't modify the model weight, because it is exactly same as the one you can download from the HuggingFace model hub.
+When you call `mlflow.transformers.log_model`, MLflow will saves a full copy of the Transformers model weight. However, this could take large storage space (3GB for `flan-alpaca-large` model), but might be redundant when you don't modify the model weight, because it is exactly same as the one you can download from the HuggingFace model hub.
 
-To avoid the unnecessary copy, you can use 'reference-only' save mode which is introduced in MLflow 2.11.0, by setting ``save_pretrained=False`` when logging or saving the Transformer model. This tells MLflow not to save the copy of the base model weight, but just a reference to the HuggingFace Hub repository and version, hence more storage-efficient and faster in time. For more details about this feature, please refer to [Storage-Efficient Model Logging](https://www.mlflow.org/docs/latest/llms/transformers/guide/index.html#storage-efficient-model-logging-with-save-pretrained-option).
+To avoid the unnecessary copy, you can use 'reference-only' save mode which is introduced in MLflow 2.11.0, by setting ``save_pretrained=False`` when logging or saving the Transformer model. This tells MLflow not to save the copy of the base model weight, but just a reference to the HuggingFace Hub repository and version, hence more storage-efficient and faster in time.
 
 
 ```python
@@ -184,7 +184,7 @@ We initialize our text generation model using MLflow's pyfunc module for seamles
 
 The `pyfunc` module in MLflow serves as a generic wrapper for Python functions. Its application in MLflow facilitates the loading of machine learning models as standard Python functions. This approach is especially advantageous for models logged or registered via MLflow, streamlining the interaction with the model regardless of its training or serialization specifics.
 
-Utilizing [mlflow.pyfunc.load_model](https://www.mlflow.org/docs/latest/python_api/mlflow.pyfunc.html#mlflow.pyfunc.load_model), our previously logged text generation model is loaded using its unique model URI. This URI is a reference to the stored model artifacts. MLflow efficiently handles the model's deserialization, along with any associated dependencies, preparing it for immediate use.
+Utilizing `mlflow.pyfunc.load_model`, our previously logged text generation model is loaded using its unique model URI. This URI is a reference to the stored model artifacts. MLflow efficiently handles the model's deserialization, along with any associated dependencies, preparing it for immediate use.
 
 Once the model, referred to as `sentence_generator`, is loaded, it operates as a conventional Python function. This functionality allows for the generation of text based on given prompts. The model encompasses the complete process of inference, eliminating the need for manual input preprocessing or output postprocessing. This encapsulation not only simplifies model interaction but also ensures the model's adaptability for deployment across various platforms.
 
