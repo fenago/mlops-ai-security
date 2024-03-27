@@ -1,4 +1,4 @@
-### Lab: Dagster -  Building an asset graph
+### Lab: Dagster - Building an asset graph
 
 In the previous portion of the tutorial, you wrote your first Software-defined asset (SDA), looked at Dagster's UI, and manually materialized your asset.
 
