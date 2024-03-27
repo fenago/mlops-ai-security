@@ -9,7 +9,7 @@ the logging, registering, and loading of a model for inference.
 Pre-Req:
 --------
 
-1. Run the github erpository in the lab environment - IMPORTANT - make sure that you open git bash to run this.:
+1. Run the github repository in the lab environment - IMPORTANT - make sure that you open git bash to run this.:
 
 `git clone https://github.com/fenago/mlops-ai-security.git`
 
